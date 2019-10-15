@@ -17,7 +17,7 @@ This creates a sensors called "Health".
 Telemetry Object:
 
 | Field | Description |
-| --- | --- | |
+| --- | --- |
 | `osVersion` | OS Version. Example: `8 (jessie)` |
 | `osVersionID` | OS Version ID. Example: `3.10.2` |
 | `osName` | OS Name. Example: `Alpine Linux` |
