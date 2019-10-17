@@ -2,6 +2,9 @@
 
 ![Wazigate Health](www/icons/health.svg)
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/waziup/wazigate-health?style=flat-square)](https://hub.docker.com/r/waziup/wazigate-health)
+[![godoc reference](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square)](https://godoc.org/github.com/Waziup/wazigate-health/health)
+
 The Wazigate Health service is a Wazigate App that submits gateway health data (CPU usage, memory usage, ...) and telemetry data (OS version, ...) to the Gateway API.
 This creates a sensors called "Health".
 
@@ -41,7 +44,6 @@ Required Mappings:
 | `/proc/stat` | CPU and Boottime. |
 | `/proc/meminfo` | Memory Info. |
 | `/etc/os-release` | Telemetry: OS information. |
-
 
 ## Commands
 
