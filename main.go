@@ -50,8 +50,9 @@ func main() {
 		<-ticker.C // wait
 
 		data := map[string]interface{}{
-			"cpu": health.CPU(),
-			"mem": health.Mem(),
+			"cpu":     health.CPU(),
+			"cpuTemp": health.CPUTemp(),
+			"mem":     health.Mem(),
 		}
 
 		if counter == 0 {
