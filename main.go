@@ -51,6 +51,7 @@ func main() {
 
 		data := map[string]interface{}{
 			"cpu": health.CPU(),
+			"mem": health.Mem(),
 		}
 
 		if counter == 0 {
@@ -86,9 +87,9 @@ func CreateHealthSensor() {
 		log.Println("The sensor was already created.")
 	} else if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		log.Fatalf("Response was not ok: %d %s", resp.StatusCode, resp.Status)
+	} else {
+		log.Printf("Successfully created sensor (Status: %s).", resp.Status)
 	}
-
-	log.Printf("Successfully created sensor (Status: %s).", resp.Status)
 }
 
 // PostHealth creates new health data.
