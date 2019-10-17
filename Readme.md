@@ -13,6 +13,7 @@ This creates a sensors called "Health".
 | Field | Description |
 | --- | --- |
 | `cpu` | CPU usage, range 0 (0%) to 1 (100%). Example: `0.1708` (= 17%) |
+| `cpuTemp` | CPU temperature in °C. Example: `55.844` |
 | `mem` | Memory info. Example: `{used: 232036, all: 949448}` (Total Size ~1GB, Used ~200MB) |
 | `boottime` | Boottime. Time the device booted. Example: `2019-10-14T10:55:43Z` |
 | `telemetry` | Telemetry Data. See below for more information. |
@@ -44,6 +45,7 @@ Required Mappings:
 | `/proc/stat` | CPU and Boottime. |
 | `/proc/meminfo` | Memory Info. |
 | `/etc/os-release` | Telemetry: OS information. |
+| `/sys/class/thermal/thermal_zone0/temp` | CPU temperature. |
 
 ## Commands
 
@@ -54,7 +56,7 @@ To download the latest image and run it:
 docker pull waziup/wazigate-health
 
 # Run the wazigate-health docker image
-docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release --network host -it wazigate-health:latest
+docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release  -v /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp --network host -it wazigate-health:latest
 ```
 
 To build this service from scratch:
@@ -68,5 +70,5 @@ cd wazigate-health
 docker build -f "Dockerfile" -t wazigate-health:latest .
 
 # Run the wazigate-health docker image
-docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release --network host -it wazigate-health:latest
+docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release  -v /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp --network host -it wazigate-health:latest
 ```
