@@ -10,6 +10,7 @@ This creates a sensors called "Health".
 | Field | Description |
 | --- | --- |
 | `cpu` | CPU usage, range 0 (0%) to 1 (100%). Example: `0.1708` (= 17%) |
+| `mem` | Memory info. Example: `{used: 232036, all: 949448}` (Total Size ~1GB, Used ~200MB) |
 | `boottime` | Boottime. Time the device booted. Example: `2019-10-14T10:55:43Z` |
 | `telemetry` | Telemetry Data. See below for more information. |
 | `disk` | Disk (SD Card) size and used bytes. Example: `{used: 6503288832, all: 7748247552}` (Total Size ~7GB, Used ~6GB) |
@@ -38,5 +39,32 @@ Required Mappings:
 | Name | Data |
 | --- | --- |
 | `/proc/stat` | CPU and Boottime. |
+| `/proc/meminfo` | Memory Info. |
 | `/etc/os-release` | Telemetry: OS information. |
 
+
+## Commands
+
+To download the latest image and run it:
+
+```bash
+# Download the image from docker
+docker pull waziup/wazigate-health
+
+# Run the wazigate-health docker image
+docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release --network host -it wazigate-health:latest
+```
+
+To build this service from scratch:
+
+```bash
+# Clone this repository from github
+git clone https://github.com/Waziup/wazigate-health.git
+cd wazigate-health
+
+# Build the wazigate-health docker image
+docker build -f "Dockerfile" -t wazigate-health:latest .
+
+# Run the wazigate-health docker image
+docker run --rm -v /proc:/proc -v /etc/os-release:/etc/os-release --network host -it wazigate-health:latest
+```
